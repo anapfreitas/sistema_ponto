@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 // Rota para o dashboard (acessível apenas para usuários autenticados e verificados)
 Route::get('/dashboard', function () {
-    return view('dashboard'); // Ajustado para o caminho correto
+    return view('dashboard'); 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rotas protegidas por autenticação
