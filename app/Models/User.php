@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', 
+        'role',
     ];
 
     /**
@@ -44,9 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Synchronizes the role of the user.
+     *
+     * @param string $role
+     */
     public function syncRole(string $role): void
     {
+        $this->syncRoles([$role]);
         $this->update(['role' => $role]);
-        $this->syncRoles($role);
     }
 }
