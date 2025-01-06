@@ -36,11 +36,15 @@
                         <li><a class="dropdown-item" href="{{ route('funcionarios.create') }}">Cadastrar Funcionário</a></li>
                     </ul>
                 </li>
-                @endrole
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Relatórios</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white {{ request()->is('relatorios*') ? 'active bg-success' : '' }}" href="#" id="navbarDropdownRelatorios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Relatórios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownRelatorios">
+                        <li><a class="dropdown-item" href="{{ route('relatorios.index') }}">Gerar Relatório</a></li>
+                    </ul>
                 </li>
+                @endrole
 
                 <li class="nav-item">
                     <a class="nav-link text-white {{ request()->routeIs('profile.edit') ? 'active bg-success' : '' }}" href="{{ route('profile.edit') }}">Perfil</a>

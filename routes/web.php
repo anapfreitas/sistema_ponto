@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\PontoController;
+use App\Http\Controllers\RelatorioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::get('/dashboard', function () {
 
 // Grupo de rotas protegidas por autenticação
 Route::middleware('auth')->group(function () {
+    
     // Rotas de Perfil do Usuário
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,10 +44,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::resource('/users', UserController::class);
 
-        // Rotas de Funcionários (restrito a administradores)
+        // Rotas de Funcionários 
         Route::resource('/funcionarios', FuncionarioController::class);
+
+        //Rotas de Relatórios
+        Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
+        Route::post('/relatorios/gerar', [RelatorioController::class, 'gerarRelatorio'])->name('relatorios.gerar');
+        Route::get('/relatorios/exportar', [RelatorioController::class, 'exportarRelatorio'])->name('relatorios.exportar');
     });
 });
 
-// Rotas de autenticação (Laravel Breeze ou Fortify)
 require __DIR__ . '/auth.php';
