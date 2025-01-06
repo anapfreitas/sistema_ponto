@@ -16,6 +16,7 @@
                     <a class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active bg-success' : '' }}" href="{{ route('dashboard') }}">Início</a>
                 </li>
 
+                @role('admin')
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white {{ request()->is('users*') ? 'active bg-success' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Usuários
@@ -27,6 +28,7 @@
                         <li><a class="dropdown-item" href="{{ route('users.show', 1) }}">Visualizar Usuário</a></li>
                     </ul>
                 </li>
+                @endrole
 
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Relatórios</a>
