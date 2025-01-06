@@ -54,4 +54,9 @@ class User extends Authenticatable
         $this->syncRoles([$role]);
         $this->update(['role' => $role]);
     }
+
+    public function pontos()
+    {
+        return $this->hasMany(Ponto::class, 'user_id');
+    }
 }
