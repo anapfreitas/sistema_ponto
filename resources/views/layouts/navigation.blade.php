@@ -18,14 +18,22 @@
 
                 @role('admin')
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white {{ request()->is('users*') ? 'active bg-success' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-white {{ request()->is('users*') ? 'active bg-success' : '' }}" href="#" id="navbarDropdownUsers" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Usuários
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownUsers">
                         <li><a class="dropdown-item" href="{{ route('users.index') }}">Listar Usuários</a></li>
                         <li><a class="dropdown-item" href="{{ route('users.create') }}">Criar Usuário</a></li>
-                        <li><a class="dropdown-item" href="{{ route('users.edit', 1) }}">Editar Usuário</a></li>
-                        <li><a class="dropdown-item" href="{{ route('users.show', 1) }}">Visualizar Usuário</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white {{ request()->is('funcionarios*') ? 'active bg-success' : '' }}" href="#" id="navbarDropdownFuncionarios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Funcionários
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownFuncionarios">
+                        <li><a class="dropdown-item" href="{{ route('funcionarios.index') }}">Listar Funcionários</a></li>
+                        <li><a class="dropdown-item" href="{{ route('funcionarios.create') }}">Cadastrar Funcionário</a></li>
                     </ul>
                 </li>
                 @endrole
