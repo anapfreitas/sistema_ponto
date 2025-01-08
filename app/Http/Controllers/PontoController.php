@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ponto;
 use App\Http\Requests\StorePontoRequest;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PontoController extends Controller
 {
@@ -13,20 +13,20 @@ class PontoController extends Controller
         $user = auth()->user();
 
         // Verifica se já existe uma entrada para hoje
-        $hoje = \Carbon\Carbon::now('America/Sao_Paulo')->toDateString();
+        $hoje = Carbon::now('America/Sao_Paulo')->toDateString();
         $registro = Ponto::where('user_id', $user->id)
             ->where('data_entrada', $hoje)
             ->first();
 
         if ($registro) {
-            return redirect()->back()->withErrors('Entrada já registrada para hoje.');
+            return redirect()->back()->withErrors(['message' => 'Entrada já registrada para hoje.']);
         }
 
         // Cria o registro de entrada
         Ponto::create([
             'user_id' => $user->id,
-            'data_entrada' => \Carbon\Carbon::now('America/Sao_Paulo')->toDateString(),
-            'hora_entrada' => \Carbon\Carbon::now('America/Sao_Paulo')->toTimeString(),
+            'data_entrada' => Carbon::now('America/Sao_Paulo')->toDateString(),
+            'hora_entrada' => Carbon::now('America/Sao_Paulo')->toTimeString(),
         ]);
 
         return redirect()->back()->with('success', 'Entrada registrada com sucesso!');
@@ -37,23 +37,23 @@ class PontoController extends Controller
         $user = auth()->user();
 
         // Verifica se já existe uma entrada para hoje
-        $hoje = \Carbon\Carbon::now('America/Sao_Paulo')->toDateString();
+        $hoje = Carbon::now('America/Sao_Paulo')->toDateString();
         $registro = Ponto::where('user_id', $user->id)
             ->where('data_entrada', $hoje)
             ->first();
 
         if (!$registro) {
-            return redirect()->back()->withErrors('Nenhuma entrada registrada para hoje.');
+            return redirect()->back()->withErrors(['message' => 'Nenhuma entrada registrada para hoje.']);
         }
 
         if ($registro->hora_saida) {
-            return redirect()->back()->withErrors('Saída já registrada para hoje.');
+            return redirect()->back()->withErrors(['message' => 'Saída já registrada para hoje.']);
         }
 
         // Atualiza o registro com a saída
         $registro->update([
-            'data_saida' => \Carbon\Carbon::now('America/Sao_Paulo')->toDateString(),
-            'hora_saida' => \Carbon\Carbon::now('America/Sao_Paulo')->toTimeString(),
+            'data_saida' => Carbon::now('America/Sao_Paulo')->toDateString(),
+            'hora_saida' => Carbon::now('America/Sao_Paulo')->toTimeString(),
         ]);
 
         return redirect()->back()->with('success', 'Saída registrada com sucesso!');
