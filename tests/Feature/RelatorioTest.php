@@ -15,8 +15,6 @@ class RelatorioTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Criar os papéis
         Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         Role::firstOrCreate(['name' => 'funcionario', 'guard_name' => 'web']);
     }
