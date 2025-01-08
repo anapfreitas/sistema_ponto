@@ -40,14 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/pontos/saida', [PontoController::class, 'registrarSaida'])->name('pontos.saida');
     Route::get('/pontos/historico', [PontoController::class, 'historico'])->name('pontos.historico');
 
-    // Rotas de Usuários (restrito a administradores)
+    // Rotas(restrito a administradores)
     Route::middleware('role:admin')->group(function () {
         Route::resource('/users', UserController::class);
-
-        // Rotas de Funcionários 
         Route::resource('/funcionarios', FuncionarioController::class);
-
-        //Rotas de Relatórios
         Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
         Route::post('/relatorios/gerar', [RelatorioController::class, 'gerarRelatorio'])->name('relatorios.gerar');
         Route::get('/relatorios/exportar', [RelatorioController::class, 'exportarRelatorio'])->name('relatorios.exportar');
