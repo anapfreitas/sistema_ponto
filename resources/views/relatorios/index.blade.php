@@ -8,11 +8,11 @@
     <form action="{{ route('relatorios.gerar') }}" method="POST">
         @csrf
         <div class="mb-4">
-            <label for="funcionario_id" class="block text-gray-700">Funcionário:</label>
+            <label for="funcionario_id" class="block text-gray-700">Usuário:</label>
             <select id="funcionario_id" name="funcionario_id" class="w-full border-gray-300 rounded-lg">
-                <option value="">Todos os Funcionários</option>
-                @foreach($funcionarios as $funcionario)
-                <option value="{{ $funcionario->id }}">{{ $funcionario->name }}</option>
+                <option value="">Todos os Usuários</option>
+                @foreach($usuarios as $usuario)
+                    <option value="{{ $usuario->id }}">{{ $usuario->name }} ({{ $usuario->role }})</option>
                 @endforeach
             </select>
         </div>

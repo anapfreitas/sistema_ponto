@@ -35,7 +35,8 @@
     <table>
         <thead>
             <tr>
-                <th>Funcionário</th>
+                <th>Usuário</th>
+                <th>Papel</th>
                 <th>Data Entrada</th>
                 <th>Hora Entrada</th>
                 <th>Data Saída</th>
@@ -47,17 +48,16 @@
             @foreach($registros as $registro)
             <tr>
                 <td>{{ $registro->user->name }}</td>
+                <td>{{ $registro->user->role }}</td>
                 <td>{{ $registro->data_entrada }}</td>
                 <td>{{ $registro->hora_entrada }}</td>
                 <td>{{ $registro->data_saida }}</td>
                 <td>{{ $registro->hora_saida }}</td>
                 <td>
                     @if($registro->hora_saida && $registro->hora_entrada)
-                    {{
-                                \Carbon\Carbon::parse($registro->hora_entrada)
-                                    ->diff(\Carbon\Carbon::parse($registro->hora_saida))
-                                    ->format('%H:%I:%S')
-                            }}
+                    {{ $totais[$registro->user_id]['horas'] }}h
+                    {{ $totais[$registro->user_id]['minutos'] }}m
+                    {{ $totais[$registro->user_id]['segundos'] }}s
                     @endif
                 </td>
             </tr>

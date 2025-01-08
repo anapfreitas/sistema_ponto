@@ -11,8 +11,9 @@ class RelatorioController extends Controller
 {
     public function index()
     {
-        $funcionarios = User::where('role', 'funcionario')->get();
-        return view('relatorios.index', compact('funcionarios'));
+
+        $usuarios = User::whereIn('role', ['funcionario', 'admin'])->get();
+        return view('relatorios.index', compact('usuarios'));
     }
 
     public function gerarRelatorio(Request $request)
