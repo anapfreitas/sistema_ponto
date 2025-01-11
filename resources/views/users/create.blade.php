@@ -16,7 +16,7 @@
             <input type="email" id="email" name="email" class="form-control" style="background-color: #23877A; color: white; border: none;" required>
         </div>
         <div class="mb-3">
-            <label for="role" class="form-label font-semibold" style="color: #0A4F58;">Função:</label>
+            <label for="role" class="form-label font-semibold" style="color: #0A4F58;">Papel:</label>
             <select id="role" name="role" class="form-select" style="background-color: #23877A; color: white; border: none;" required>
                 <option value="admin" style="color: black;">Admin</option>
                 <option value="funcionario" style="color: black;">Funcionário</option>

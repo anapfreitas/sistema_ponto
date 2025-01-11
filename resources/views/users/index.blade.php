@@ -12,7 +12,7 @@
                     <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">ID</th>
                     <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Nome</th>
                     <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">E-mail</th>
-                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Função</th>
+                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Papel</th>
                     <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Ações</th>
                 </tr>
             </thead>
