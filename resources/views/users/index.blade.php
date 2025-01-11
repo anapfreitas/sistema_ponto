@@ -9,11 +9,11 @@
         <table class="table-auto w-full bg-white rounded-lg shadow-lg">
             <thead>
                 <tr class="bg-[#23877A] text-white text-left">
-                    <th class="px-6 py-3">ID</th>
-                    <th class="px-6 py-3">Nome</th>
-                    <th class="px-6 py-3">E-mail</th>
-                    <th class="px-6 py-3">Função</th>
-                    <th class="px-6 py-3">Ações</th>
+                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">ID</th>
+                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Nome</th>
+                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">E-mail</th>
+                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Função</th>
+                    <th class="px-3 py-2 rounded" style="background-color:rgb(29, 141, 98)">Ações</th>
                 </tr>
             </thead>
             <tbody>
