@@ -59,19 +59,27 @@ class RelatorioController extends Controller
     private function calcularTotais($registros)
     {
         return $registros->groupBy('user_id')->map(function ($pontos) {
-            return $pontos->reduce(function ($total, $ponto) {
+            $totais = $pontos->reduce(function ($total, $ponto) {
                 if ($ponto->hora_saida && $ponto->hora_entrada) {
                     $entrada = \Carbon\Carbon::createFromFormat('H:i:s', $ponto->hora_entrada);
                     $saida = \Carbon\Carbon::createFromFormat('H:i:s', $ponto->hora_saida);
 
-                    return [
-                        'horas' => $total['horas'] + $entrada->diffInHours($saida),
-                        'minutos' => $total['minutos'] + $entrada->diffInMinutes($saida) % 60,
-                        'segundos' => $total['segundos'] + $entrada->diffInSeconds($saida) % 60,
-                    ];
+                    $total['segundos'] += $entrada->diffInSeconds($saida) % 60;
+                    $total['minutos'] += $entrada->diffInMinutes($saida) % 60;
+                    $total['horas'] += $entrada->diffInHours($saida);
+
+                    return $total;
                 }
                 return $total;
             }, ['horas' => 0, 'minutos' => 0, 'segundos' => 0]);
+
+
+            $totais['minutos'] += intdiv($totais['segundos'], 60);
+            $totais['segundos'] %= 60;
+            $totais['horas'] += intdiv($totais['minutos'], 60);
+            $totais['minutos'] %= 60;
+
+            return $totais;
         });
     }
 }
